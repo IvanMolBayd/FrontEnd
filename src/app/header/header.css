@@ -1,0 +1,34 @@
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-family: 'Bungee Spice', cursive;
+}
+.navbar{
+    background-color: rgb(43, 43, 90) !important;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5) !important;
+    
+}
+.navbar-toggler{
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    background-color: rgb(71, 78, 146) !important ;
+}
+.nav-link{
+    color: white !important;
+}
+.nav-link:hover{
+    color: rgb(200, 200, 200) !important;
+}
+.navbar-collapse{
+    justify-content: flex-end;
+}
+.navbar-text{
+    font-family: 'Bungee Spice', cursive;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(43, 43, 90) !important;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #2d417a 0%, #071a3a 100%);
+}
