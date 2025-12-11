@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -39,7 +39,11 @@ export interface Produit {
 export class ProduitService {
   private http = inject(HttpClient);
   private apiUrl = 'https://dummyjson.com/products'; 
+  searchTerm = signal<string>('');
   getProduits(): Observable<ProductResponse> {
     return this.http.get<ProductResponse>(this.apiUrl);
+  }
+  updateSearch(searchTerm: string) {
+    this.searchTerm.set(searchTerm);
   }
 }

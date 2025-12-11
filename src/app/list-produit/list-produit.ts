@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Produit, Review, } from '../models/produit';
+import { Produit, } from '../models/produit';
 import { ProduitService } from '../produit-service';
+import { CurrencyService } from '../currency-service';
 @Component({
   selector: 'app-list-produit',
   standalone: true,
@@ -11,6 +12,7 @@ import { ProduitService } from '../produit-service';
 })
 
 export class ListProduit implements OnInit {
+  public currencyService = inject(CurrencyService);
   private produitService = inject(ProduitService);
   produitList : Produit[] = [];
   ngOnInit(): void {
@@ -29,8 +31,26 @@ export class ListProduit implements OnInit {
       }
     });
   }
-}
+  get filteredList(): Produit[] {
+      // Sécurité 1 : Si le terme de recherche est vide ou nul, on renvoie tout
+      const term = (this.produitService.searchTerm() || '').toLowerCase();
 
+      if (!term) {
+        return this.produitList;
+      }
+
+      return this.produitList.filter(p => {
+        // Sécurité 2 : On s'assure que title et description existent avant de faire toLowerCase()
+        // Si p.title est undefined, on utilise '' (chaine vide) à la place.
+        const title = (p.title || '').toLowerCase();
+        const description = (p.description || '').toLowerCase();
+
+        return title.includes(term) || description.includes(term);
+      });
+    }
+
+}
+  
 // export class ListProduit {
 //   produits: Produit[] = [
 //     {

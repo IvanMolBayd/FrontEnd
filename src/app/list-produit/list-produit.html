@@ -1,6 +1,6 @@
 <div class="row g-4">
 
-  <div class="col-md-3" *ngFor="let p of produits">
+  <div class="col-md-3" *ngFor="let p of filteredList">
     <div class="card shadow-sm h-100">
 
     <img [alt]="p.title" [title]="p.title" [src]="p.images[0]" class="card-img-top p-3" />
@@ -10,7 +10,7 @@
         <p class="text-muted small">{{ p.description }}</p>
 
         <div class="mt-auto">
-          <p class="fw-bold fs-5 text-primary">{{ p.price }} MAD</p>
+          <p class="fw-bold fs-5 text-primary">{{p.price | currency: currencyService.selectedCurrency() }}</p>
           <button class="btn btn-warning w-100">
             Ajouter au panier
           </button>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ProduitService } from '../produit-service';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './search-bar.css',
 })
 export class SearchBar {
+  private produitService = inject(ProduitService);
 
+  onSearch(term: string) {
+    console.log('Recherche:', term); 
+    this.produitService.updateSearch(term);
+  }
 }
