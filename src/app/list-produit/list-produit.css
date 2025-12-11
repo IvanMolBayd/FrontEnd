@@ -11,3 +11,17 @@
     height: 150px;
     object-fit: contain;
 }
+
+.shop-layout {
+    display: flex;
+    gap: 20px; 
+}
+
+.sidebar-column {
+    flex-shrink: 0; 
+    width: 250px; 
+}
+
+.products-column {
+    flex-grow: 1; 
+}

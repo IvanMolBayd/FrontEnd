@@ -1,23 +1,48 @@
-<div class="row g-4">
-
-  <div class="col-md-3" *ngFor="let p of filteredList">
-    <div class="card shadow-sm h-100">
-
-    <img [alt]="p.title" [title]="p.title" [src]="p.images[0]" class="card-img-top p-3" />
-
-    <div class="card-body d-flex flex-column">
-        <h6 class="fw-bold">{{ p.title }}</h6>
-        <p class="text-muted small">{{ p.description }}</p>
-
-        <div class="mt-auto">
-          <p class="fw-bold fs-5 text-primary">{{p.price | currency: currencyService.selectedCurrency() }}</p>
-          <button class="btn btn-warning w-100">
-            Ajouter au panier
-          </button>
-        </div>
-      </div>
-
+<div class="shop-layout container-fluid">
+    
+    <div class="sidebar-column">
+        <app-category-sidebar
+            (categorySelected)="onCategorySelected($event)">
+        </app-category-sidebar>
     </div>
-  </div>
 
+    <div class="products-column">
+        
+        <h2 class="mb-4">
+            {{ currentCategory ? ('Catégorie : ' + currentCategory) : 'Tous les Produits' }}
+        </h2>
+        
+        <div class="row g-4">
+
+            <div class="col-md-3" *ngFor="let p of filteredList">
+                <div class="card shadow-sm h-100">
+
+                <img [alt]="p.title" [title]="p.title" [src]="p.images[0]" class="card-img-top p-3" />
+
+                <div class="card-body d-flex flex-column">
+                    <h6 class="fw-bold">{{ p.title }}</h6>
+                    <p class="text-muted small">{{ p.description }}</p>
+
+                    <div class="mt-auto">
+                        <p class="fw-bold fs-5 text-primary">{{p.price | currency: currencyService.selectedCurrency() }}</p>
+                        <button 
+                            class="btn btn-warning w-100"
+                            (click)="addProduitToCart(p)"
+                        >
+                            Ajouter au panier
+                        </button>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div *ngIf="filteredList.length === 0" class="col-12">
+                <div class="alert alert-info">
+                    Aucun produit trouvé dans cette catégorie ou correspondant à votre recherche.
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

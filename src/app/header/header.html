@@ -1,7 +1,7 @@
 <header>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Caveat+Brush&family=Gabarito:wght@400..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 </header> 
 
 <nav class=" gradient navbar navbar-expand-lg navbar-light shadow-sm">
@@ -9,7 +9,7 @@
 
     <!-- Logo (wrapped in .navbar-brand for proper alignment) -->
     <a class="navbar-brand" href="/">
-      <img src="https://cdn-03.9rayti.com/rsrc/cache/widen_292/uploads/2012/07/emi-rabat.png" alt="emiShop Logo" title="emiShop" height="40" class="d-inline-block align-text-top" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/EMILogo.gif" alt="emiShop Logo" title="emiShop" height="40" class="d-inline-block align-text-top" loading="lazy">
     </a>
       <a class="navbar-text">emiShop</a>
 
@@ -24,7 +24,7 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
             <div>
-              <label>Currency: </label>
+              <label class="nav-link" for="basic-select" class="sr-only"> Devise: </label>
               <select (change)="onCurrencyChange($event)">
                 <option value="USD">USD ($)</option>
                 <option value="EUR">EUR (€)</option>

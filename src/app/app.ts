@@ -6,11 +6,11 @@ import { Categories } from './categories/categories';
 import { Footer } from './footer/footer';
 import { SearchBar } from './search-bar/search-bar';
 import { Header } from './header/header';
-import { Panier } from './panier/panier';
+import { PanierComponent } from './panier/panier';
 
 @Component({
   selector: 'app-root',
-  imports: [ListProduit, Auth, Categories, Footer, SearchBar, Header, Panier, RouterOutlet],
+  imports: [ListProduit, Auth, Categories, Footer, SearchBar, Header, PanierComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

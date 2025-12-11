@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Produit, } from '../models/produit';
 import { ProduitService } from '../produit-service';
 import { CurrencyService } from '../currency-service';
+import { CategorySidebarComponent } from '../category-sidebar/category-sidebar';
+import { PanierService } from '../panier-service';
 @Component({
   selector: 'app-list-produit',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CategorySidebarComponent],
   templateUrl: './list-produit.html',
   styleUrls: ['./list-produit.css'],
 })
@@ -14,23 +16,36 @@ import { CurrencyService } from '../currency-service';
 export class ListProduit implements OnInit {
   public currencyService = inject(CurrencyService);
   private produitService = inject(ProduitService);
+  private panierService = inject(PanierService);
   produitList : Produit[] = [];
+  currentCategory: string | null = null;
   ngOnInit(): void {
-    this.loadProduits();
+    this.loadProduits(null);
+  }
+  addProduitToCart(product: Produit): void {
+    this.panierService.addToCart(product);
+    console.log(`Produit ajouté au panier: ${product.title}`);
   }
 
 
-  loadProduits() {
-    this.produitService.getProduits().subscribe({
-      next: (response) => {
-        this.produitList = response.products;
-        console.log('Produits chargés avec succès:', this.produitList);
-      },
-      error: (error) => {
-        console.error('Erreur lors du chargement des produits:', error);
-      }
-    });
-  }
+  loadProduits(category: string | null) {
+      this.currentCategory = category; 
+      
+      this.produitService.getProduits(category).subscribe({ 
+         next: (response) => {
+            this.produitList = response.products;
+            console.log(`Produits chargés pour ${category || 'toutes les catégories'} :`, this.produitList);
+         },
+         error: (error) => {
+            console.error('Erreur lors du chargement des produits:', error);
+         }
+      });
+   }
+    onCategorySelected(category: string | null) {
+      console.log('Catégorie sélectionnée dans le composant parent :', category);
+      this.loadProduits(category);
+    }
+
   get filteredList(): Produit[] {
       // Sécurité 1 : Si le terme de recherche est vide ou nul, on renvoie tout
       const term = (this.produitService.searchTerm() || '').toLowerCase();

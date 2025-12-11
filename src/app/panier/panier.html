@@ -1,14 +1,76 @@
-<h3>Panier</h3>
-<ul class="list-group">
-  <li class="list-group-item">Produit A — 1200 MAD</li>
-</ul>
-<style>
-  h3 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .list-group {
-    max-width: 600px;
-    margin: auto;
-  }
-</style>
+<div class="container my-5">
+    <h1>🛒 Votre Panier</h1>
+
+    <div *ngIf="cartItems().length === 0; else cartContent" class="alert alert-info">
+        Votre panier est vide. Parcourez nos produits pour commencer vos achats !
+    </div>
+
+    <ng-template #cartContent>
+        <div class="row">
+            
+            <div class="col-lg-8">
+                
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix Unitaire</th>
+                            <th>Quantité</th>
+                            <th>Sous-total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cartItems()">
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img [src]="item.images[0]" [alt]="item.title" class="img-thumbnail me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                    <span>{{ item.title }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                {{ item.price | currency: currencyService.selectedCurrency() }}
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm" style="width: 120px;">
+                                    <button class="btn btn-outline-secondary" (click)="decreaseQuantity(item)">-</button>
+                                    <input type="text" class="form-control text-center" [value]="item.quantity" readonly>
+                                    <button class="btn btn-outline-secondary" (click)="increaseQuantity(item)">+</button>
+                                </div>
+                            </td>
+                            <td>
+                                {{ (item.price * item.quantity) | currency: currencyService.selectedCurrency() }}
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" (click)="removeItem(item.id)">
+                                    <i class="bi bi-trash"></i> Retirer
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <button class="btn btn-outline-danger" (click)="clearAll()">
+                    Vider le Panier
+                </button>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card shadow-sm p-4">
+                    <h5>Résumé de la Commande</h5>
+                    <hr>
+                    <p>Total des articles: <strong>{{ panierService.cartCount() }}</strong></p>
+                    
+                    <div class="d-flex justify-content-between fw-bold fs-4 mt-3">
+                        <span>Total :</span>
+                        <span>{{ cartTotal() | currency: currencyService.selectedCurrency() }}</span>
+                    </div>
+                    
+                    <button class="btn btn-success btn-lg mt-4">
+                        Passer à la Caisse
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
