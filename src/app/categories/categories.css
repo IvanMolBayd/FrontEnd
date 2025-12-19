@@ -1,0 +1,9 @@
+.category-box {
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, #f0f4ff 0%, #d9e4ff 100%);
+    box-shadow: 0 4px 12px rgba(16,24,40,0.1);
+    transition: box-shadow .2s ease, transform .1s ease;
+}

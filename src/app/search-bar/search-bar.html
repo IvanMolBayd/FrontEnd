@@ -1,0 +1,17 @@
+<div class="search-bar search-bar--joined">
+    <input 
+        #searchInput
+        type="text" 
+        class="search-bar__input" 
+        placeholder="Rechercher un produit, une marque..."
+        (input)="onSearch(searchInput.value)"
+        (keyup.enter)="onSearch(searchInput.value)"
+    >
+    
+    <button 
+        class="search-bar__button"
+        (click)="onSearch(searchInput.value)"
+    >
+        Rechercher
+    </button>
+</div>
