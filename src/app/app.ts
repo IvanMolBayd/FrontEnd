@@ -7,10 +7,11 @@ import { Footer } from './footer/footer';
 import { SearchBar } from './search-bar/search-bar';
 import { Header } from './header/header';
 import { PanierComponent } from './panier/panier';
+import { CategorySidebarComponent } from './category-sidebar/category-sidebar';
 
 @Component({
   selector: 'app-root',
-  imports: [ListProduit, Auth, Categories, Footer, SearchBar, Header, PanierComponent],
+  imports: [ListProduit, Auth, Categories, Footer, SearchBar, Header, PanierComponent, CategorySidebarComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

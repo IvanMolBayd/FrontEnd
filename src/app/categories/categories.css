@@ -6,4 +6,26 @@
     background: linear-gradient(135deg, #f0f4ff 0%, #d9e4ff 100%);
     box-shadow: 0 4px 12px rgba(16,24,40,0.1);
     transition: box-shadow .2s ease, transform .1s ease;
+    flex: 0 0 auto;
+
+    
+}
+
+:host {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  box-shadow: 0 4px 12px rgba(16,24,40,0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.12);
+
+}
+.categories-bar {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.category-box:hover {
+    box-shadow: 0 8px 24px rgba(16,24,40,0.2);
+    transform: translateY(-4px);
 }
