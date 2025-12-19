@@ -19,6 +19,8 @@ export class ProduitService {
   private apiUrl = 'https://dummyjson.com/products'; 
     selectedCategorySlug = signal<string | null>(null);
   searchTerm = signal<string>('');
+
+
   
   getProduits(category: string | null = null): Observable<ProductResponse> {
     let url = this.apiUrl;
@@ -35,7 +37,7 @@ export class ProduitService {
   }
   
   getCategories(): Observable<Category[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/categories`).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/category-list`).pipe(
         map(data => {
             return data
                 .filter(categorySlug => typeof categorySlug === 'string') 
