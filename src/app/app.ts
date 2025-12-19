@@ -10,7 +10,7 @@ import { PanierComponent } from './panier/panier';
 
 @Component({
   selector: 'app-root',
-  imports: [ListProduit, Auth, Categories, Footer, SearchBar, Header, PanierComponent, RouterOutlet],
+  imports: [ListProduit, Auth, Categories, Footer, SearchBar, Header, PanierComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

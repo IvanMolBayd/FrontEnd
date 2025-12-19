@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { PanierService, CartItem } from '../panier-service';
 import { CurrencyService } from '../currency-service'; // Pour l'affichage des devises
 import { CommonModule } from '@angular/common'; // Pour *ngFor et *ngIf
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-panier',

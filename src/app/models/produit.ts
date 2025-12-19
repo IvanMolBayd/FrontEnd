@@ -19,3 +19,10 @@ export interface Produit {
     reviews?: Review[]; 
     images: string[];
 }
+
+export interface ProductResponse {
+  products: Produit[]; // <== C'EST CETTE INTERFACE QUI MANQUAIT
+  total: number;
+  skip: number;
+  limit: number;
+}

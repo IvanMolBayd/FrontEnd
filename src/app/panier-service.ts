@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { Produit } from './produit-service'; 
+import { Produit } from './models/produit'; 
 
 // Interface pour les articles du panier
 export interface CartItem extends Produit {
@@ -24,7 +24,7 @@ export class PanierService {
   constructor() { }
 
   /**
-   * @param product Le produit à ajouter.
+   * @param product 
    */
   addToCart(product: Produit): void {
     this.cartItems.update(items => {
@@ -47,7 +47,7 @@ export class PanierService {
 
 
   /**
-   * @param productId ID du produit à supprimer.
+   * @param productId
    */
   removeFromCart(productId: number): void {
     this.cartItems.update(items =>
@@ -56,8 +56,8 @@ export class PanierService {
   }
 
   /**
-   * @param productId ID du produit.
-   * @param newQuantity Nouvelle quantité.
+   * @param productId
+   * @param newQuantity
    */
   updateQuantity(productId: number, newQuantity: number): void {
     if (newQuantity <= 0) {
