@@ -31,6 +31,11 @@ export class ProduitService {
 
     return this.http.get<ProductResponse>(url);
   }
+
+  getProduitById(id: number) {
+    return this.http.get<Produit>(`${this.apiUrl}/${id}`);
+  }
+
   
   updateSearch(searchTerm: string) {
     this.searchTerm.set(searchTerm);

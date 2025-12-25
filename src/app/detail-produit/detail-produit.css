@@ -1,0 +1,17 @@
+.main-image img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.img-thumbnail:hover {
+  border-color: #0d6efd;
+}
+
+.italic {
+  font-style: italic;
+  color: #555;
+}
+
+.bi-star-fill {
+  color: #ffc107;
+}

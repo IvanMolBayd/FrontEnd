@@ -49,7 +49,16 @@
         </li>
 
         <li class="nav-item">
-          <a class="btn btn-outline-primary btn-sm" href="#">Connexion</a>
+          <div class="auth-section">
+            @if (currentUser) {
+              <span class="nav-link fw-bold text-primary">Bonjour, <strong>{{ currentUser.email }}</strong></span>
+              <button (click)="logout()" class="btn btn-sm btn-outline-danger">Déconnexion</button>
+            } @else {
+              <button (click)="goToLogin()" class="btn btn-primary">
+                Connexion
+              </button>
+            }
+          </div>
         </li>
 
       </ul>

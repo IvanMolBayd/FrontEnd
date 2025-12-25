@@ -1,15 +1,15 @@
 <h3>Authentification</h3>
 <form class="w-50">
-  <input class="form-control mb-3" placeholder="Email">
-  <input type="password" class="form-control mb-3" placeholder="Mot de passe">
-  <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+  <input name="email" [(ngModel)]="email" class="form-control mb-3" placeholder="Email" required>
+  <input name="password" [(ngModel)]="password" type="password" class="form-control mb-3" placeholder="Mot de passe" required>
+  
+  @if (errorMessage) {
+    <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
+
+  <div class="d-flex gap-2">
+    <button type="button" (click)="login()" class="btn btn-primary w-100">Se connecter</button>
+    
+    <button type="button" (click)="signUp()" class="btn btn-outline-success w-100">S'inscrire</button>
+  </div>
 </form>
-<style>
-  h3 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  form {
-    margin: auto;
-  }
-</style>

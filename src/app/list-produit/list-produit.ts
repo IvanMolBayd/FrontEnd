@@ -5,12 +5,13 @@ import { ProduitService } from '../produit-service';
 import { CurrencyService } from '../currency-service';
 import { PanierService } from '../panier-service';
 import { CategorySidebarComponent } from '../category-sidebar/category-sidebar';
-
+import { RouterModule } from '@angular/router';
+import { Categories } from '../categories/categories';
 
 @Component({
   selector: 'app-list-produit',
   standalone: true,
-  imports: [CommonModule], 
+  imports: [CommonModule, CategorySidebarComponent, RouterModule, Categories], 
   templateUrl: './list-produit.html',
   styleUrls: ['./list-produit.css'],
 })
@@ -47,7 +48,10 @@ export class ListProduit implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+      this.produitService.getProduits().subscribe(res => {
+      this.produitList.set(res.products);
+    });
   }
 
   addProduitToCart(product: Produit): void {

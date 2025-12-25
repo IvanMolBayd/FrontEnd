@@ -1,1 +1,75 @@
-<p>detail-produit works!</p>
+<div class="container mt-5" *ngIf="produit">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="main-image shadow-sm mb-3 text-center bg-light p-4 rounded">
+        <img [src]="produit.images[0]" class="img-fluid rounded" style="max-height: 400px;" alt="{{produit.title}}">
+      </div>
+      <div class="d-flex gap-2 overflow-auto">
+        @for (img of produit.images; track $index) {
+          <img [src]="img" class="img-thumbnail" style="width: 80px; height: 80px; cursor: pointer;">
+        }
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+          <li class="breadcrumb-item active">{{produit.category}}</li>
+        </ol>
+      </nav>
+      
+      <h1 class="display-5 fw-bold">{{produit.title}}</h1>
+      <p class="text-muted fs-5">{{produit.brand}}</p>
+      
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge bg-warning text-dark me-2">⭐ {{produit.rating}}</span>
+        <span class="text-muted small">({{produit.reviews?.length}} avis clients)</span>
+      </div>
+
+      <h2 class="text-primary mb-4 fw-bold">{{produit.price}} $</h2>
+      
+      <p class="lead">{{produit.description}}</p>
+
+      <div class="mt-4 p-3 bg-light rounded border">
+        <p><strong>Disponibilité :</strong> 
+          <span [class.text-success]="produit.stock > 0" [class.text-danger]="produit.stock <= 0">
+            {{ produit.stock > 0 ? 'En stock (' + produit.stock + ')' : 'Rupture de stock' }}
+          </span>
+        </p>
+        <button class="btn btn-primary btn-lg w-100" [disabled]="produit.stock <= 0">
+          <i class="bi bi-cart-plus"></i> Ajouter au panier
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <h3 class="mb-4">Avis des clients</h3>
+      
+      @if (produit.reviews && produit.reviews.length > 0) {
+        @for (review of produit.reviews; track $index) {
+          <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h6 class="fw-bold">{{review.reviewerName}}</h6>
+                <span class="text-muted small">{{review.date | date:'dd/MM/yyyy'}}</span>
+              </div>
+              <div class="text-warning mb-2">
+                @for (star of [1,2,3,4,5]; track star) {
+                  <i class="bi" [ngClass]="star <= review.rating ? 'bi-star-fill' : 'bi-star'"></i>
+                }
+              </div>
+              <p class="mb-0 italic">"{{review.comment}}"</p>
+            </div>
+          </div>
+        }
+      } @else {
+        <p class="text-muted">Aucun avis pour le moment.</p>
+      }
+    </div>
+  </div>
+</div>

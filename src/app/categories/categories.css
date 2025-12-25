@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
+
+
+.bbh-bartle-regular {
+  font-family: "BBH Bartle", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  font-style: normal;
+}
+
+
 .category-box {
     border: 1px solid rgba(0,0,0,0.12);
     border-radius: 12px;
@@ -28,4 +39,23 @@
 .category-box:hover {
     box-shadow: 0 8px 24px rgba(16,24,40,0.2);
     transform: translateY(-4px);
+}
+
+
+.gradient-text {
+  /* Fallback color for older browsers */
+  color: #E21143; 
+  font-size: 72px;
+  font-weight: bold;
+
+  /* Apply the linear gradient as a background image */
+  background-image: linear-gradient(to right, #E21143, #FFB03A);
+
+  /* Clip the background to the text area */
+  background-clip: text;
+  -webkit-background-clip: text; /* For broader compatibility */
+
+  /* Make the text transparent so the background shows through */
+  color: transparent;
+  -webkit-text-fill-color: transparent; /* For broader compatibility */
 }
