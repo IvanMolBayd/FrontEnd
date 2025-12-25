@@ -1,7 +1,8 @@
 <app-header></app-header>
 
 <div class="container-fluid mt-4">
-  <div class="row g-4"> <aside class="col-lg-2 col-md-3">
+  <div class="row g-4"> 
+    <aside class="col-lg-2 col-md-3">
       <app-category-sidebar></app-category-sidebar>
     </aside>
 
@@ -10,7 +11,7 @@
         <app-categories></app-categories>
       </div>
       
-      <app-list-produit></app-list-produit>
+      <router-outlet></router-outlet>
     </main>
   </div>
 </div>

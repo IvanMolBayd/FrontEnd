@@ -32,7 +32,7 @@
         </li>
 
         <li class="nav-item">
-          <select class="form-select form-select-sm" (change)="onCurrencyChange($event)">
+          <select title="Currency" class="form-select form-select-sm" (change)="onCurrencyChange($event)">
             <option value="USD">USD ($)</option>
             <option value="EUR">EUR (€)</option>
             <option value="GBP">GBP (£)</option>
@@ -44,7 +44,8 @@
         <li class="nav-item"><a class="nav-link" href="#">Meilleures ventes</a></li>
 
         <li class="nav-item">
-          <a class="nav-link fw-bold text-primary" href="#">Panier (0)</a>
+          <a class="nav-link fw-bold text-primary" routerLink="/panier">
+          Panier ({{ panierService.cartCount() }})</a>
         </li>
 
         <li class="nav-item">
