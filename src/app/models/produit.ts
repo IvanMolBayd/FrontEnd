@@ -21,7 +21,7 @@ export interface Produit {
 }
 
 export interface ProductResponse {
-  products: Produit[]; // <== C'EST CETTE INTERFACE QUI MANQUAIT
+  products: Produit[];
   total: number;
   skip: number;
   limit: number;

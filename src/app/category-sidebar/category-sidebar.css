@@ -1,0 +1,7 @@
+.category-sidebar {
+    padding: 16px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f0f4ff 0%, #f2f4fa 100%);
+    box-shadow: 0 4px 12px rgba(45, 71, 122, 0.1);
+}

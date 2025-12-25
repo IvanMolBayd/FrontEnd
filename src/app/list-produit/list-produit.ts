@@ -21,28 +21,23 @@ export class ListProduit implements OnInit {
   public currencyService = inject(CurrencyService);
   private produitService = inject(ProduitService);
   private panierService = inject(PanierService);
-  
-  produitList = signal<Produit[]>([]);
-  
   private categorySlug = this.produitService.selectedCategorySlug;
+  produitList = signal<Produit[]>([]);
+  currentCategory: string | null = null;
 
-  currentCategory: string | null = null; 
+  filteredList = computed(() => {
+    const term = (this.produitService.searchTerm() || '').toLowerCase();
+    const currentList = this.produitList();
 
-  get filteredList(): Produit[] {
-      const term = (this.produitService.searchTerm() || '').toLowerCase();
+    if (!term) {
+      return currentList;
+    }
 
-      if (!term) {
-        return this.produitList();
-      }
-
-      return this.produitList().filter(p => { 
-        
-        const title = (p.title || '').toLowerCase();
-        const description = (p.description || '').toLowerCase();
-
-        return title.includes(term) || description.includes(term);
-      });
-    }
+    return currentList.filter(p => 
+      (p.title || '').toLowerCase().includes(term) || 
+      (p.description || '').toLowerCase().includes(term)
+    );
+  });
 
   constructor() {
     effect(() => {
