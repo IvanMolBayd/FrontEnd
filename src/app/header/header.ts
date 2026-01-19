@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './header.css',
   standalone: true,
 })
-export class Header {
+export class Header implements OnInit {
   public panierService = inject(PanierService);
   private currencyService = inject(CurrencyService);
   private auth = inject(Auth);

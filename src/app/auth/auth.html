@@ -1,7 +1,8 @@
-<h3>Authentification</h3>
-<form class="w-50">
-  <input name="email" [(ngModel)]="email" class="form-control mb-3" placeholder="Email" required>
-  <input name="password" [(ngModel)]="password" type="password" class="form-control mb-3" placeholder="Mot de passe" required>
+<div class="p-4 d-flex flex-column align-items-center">
+<h3 class=>Authentification</h3>
+<form class="w-50" >
+  <input name="email" [(ngModel)]="email" class="form-control mb-3" placeholder="Email" required email>
+  <input name="password" [(ngModel)]="password" type="password" class="form-control mb-3" placeholder="Mot de passe" required password>
   
   @if (errorMessage) {
     <div class="alert alert-danger">{{ errorMessage }}</div>
@@ -13,3 +14,4 @@
     <button type="button" (click)="signUp()" class="btn btn-outline-success w-100">S'inscrire</button>
   </div>
 </form>
+</div>

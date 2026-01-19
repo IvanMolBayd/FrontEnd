@@ -1,4 +1,4 @@
-import { Injectable, signal, computed, Component } from '@angular/core';
+import { Injectable, signal, computed, } from '@angular/core';
 import { Produit } from './models/produit'; 
 
 // Interface pour les articles du panier

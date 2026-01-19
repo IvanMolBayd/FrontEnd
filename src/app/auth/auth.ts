@@ -22,11 +22,9 @@ export class Auth {
 
   async login() {
     try {
-      // 1. Authentification via Firebase
       const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
       const fbUser = userCredential.user;
 
-      // 2. Synchronisation avec votre DB Spring Boot
       this.http.post<any>('http://localhost:8080/api/auth/sync', {
         firebaseUid: fbUser.uid,
         email: fbUser.email,
