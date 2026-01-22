@@ -7,9 +7,9 @@
 
     <ng-template #cartContent>
         <div class="row">
-            
+
             <div class="col-lg-8">
-                
+
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -24,7 +24,8 @@
                         <tr *ngFor="let item of cartItems()">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img [src]="item.images[0]" [alt]="item.title" class="img-thumbnail me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                    <img [src]="item.images[0]" [alt]="item.title" class="img-thumbnail me-3"
+                                        style="width: 60px; height: 60px; object-fit: cover;">
                                     <span>{{ item.title }}</span>
                                 </div>
                             </td>
@@ -33,9 +34,12 @@
                             </td>
                             <td>
                                 <div class="input-group input-group-sm" style="width: 120px;">
-                                    <button class="btn btn-outline-secondary" (click)="decreaseQuantity(item)">-</button>
-                                    <input type="text" class="form-control text-center" [value]="item.quantity" readonly>
-                                    <button class="btn btn-outline-secondary" (click)="increaseQuantity(item)">+</button>
+                                    <button class="btn btn-outline-secondary"
+                                        (click)="decreaseQuantity(item)">-</button>
+                                    <input type="text" class="form-control text-center" [value]="item.quantity"
+                                        readonly>
+                                    <button class="btn btn-outline-secondary"
+                                        (click)="increaseQuantity(item)">+</button>
                                 </div>
                             </td>
                             <td>
@@ -49,24 +53,25 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <button class="btn btn-outline-danger" (click)="clearAll()">
                     Vider le Panier
                 </button>
             </div>
-            
+
             <div class="col-lg-4">
-                <div class="card shadow-sm p-4">
+                <div class="card shadow-sm p-4 cart-summary">
                     <h5>Résumé de la Commande</h5>
                     <hr>
                     <p>Total des articles: <strong>{{ panierService.cartCount() }}</strong></p>
-                    
+
                     <div class="d-flex justify-content-between fw-bold fs-4 mt-3">
                         <span>Total :</span>
                         <span>{{ cartTotal() | currency: currencyService.selectedCurrency() }}</span>
                     </div>
-                    
-                    <button class="btn btn-success btn-lg mt-4">
+
+                    <button class="btn btn-success btn-lg mt-4 w-100"
+                        [disabled]="panierService.cartItems().length === 0" (click)="goToCheckout()">
                         Passer à la Caisse
                     </button>
                 </div>

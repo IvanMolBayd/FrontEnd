@@ -1,21 +1,24 @@
 <div class="category-sidebar">
-    <h3>Catégories de Produits</h3>
+    <h3>Filtres</h3>
+
+    <div class="mb-4">
+        <label class="form-label fw-bold">Prix maximum ($)</label>
+        <input type="number" class="form-control mb-2" min="0" max="50000" [value]="maxPrice()"
+            (input)="onPriceChange($event)">
+
+        <input type="range" class="form-range" min="0" max="50000" step="10" [value]="maxPrice()"
+            (input)="onPriceChange($event)">
+    </div>
+
+    <h3>Catégories</h3>
     <ul class="category-list">
-        <li
-            class="reset-filter"
-            [class.active]="selectedCategorySlug() === null"
-            (click)="selectCategory(null)"
-            style="cursor: pointer;"
-        >
+        <li class="reset-filter" [class.active]="selectedCategorySlug() === null" (click)="selectCategory(null)"
+            style="cursor: pointer;">
             <span>Toutes les catégories</span>
         </li>
 
-        <li
-            *ngFor="let category of categories"
-            [class.active]="category.slug === selectedCategorySlug()"
-            (click)="selectCategory(category)"
-            style="cursor: pointer;"
-        >
+        <li *ngFor="let category of categories" [class.active]="category.slug === selectedCategorySlug()"
+            (click)="selectCategory(category)" style="cursor: pointer;">
             <span>{{ category.name }}</span>
         </li>
     </ul>

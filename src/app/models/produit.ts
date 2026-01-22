@@ -1,7 +1,7 @@
 export interface Review {
     rating: number;
     comment: string;
-    date: Date;
+    date: any; // Type 'any' allowed to handle Firestore Timestamp vs JS Date conflicts
     reviewerName: string;
     reviewerEmail: string;
 }
@@ -16,13 +16,13 @@ export interface Produit {
     stock: number;
     brand: string;
     availabilityStatus?: boolean;
-    reviews?: Review[]; 
+    reviews?: Review[];
     images: string[];
 }
 
 export interface ProductResponse {
-  products: Produit[];
-  total: number;
-  skip: number;
-  limit: number;
+    products: Produit[];
+    total: number;
+    skip: number;
+    limit: number;
 }

@@ -1,4 +1,97 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   font-family: "Google Sans", sans-serif;
+  background-color: #f8f9fa;
+  color: #202124;
+  flex: 1;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Global Buttons --- */
+.btn {
+  border-radius: 50rem;
+  /* Pill shape */
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #1a73e8;
+  /* Google Blue - or match their brand */
+  border-color: #1a73e8;
+  box-shadow: 0 1px 3px rgba(26, 115, 232, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: #1557b0;
+  border-color: #1557b0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(26, 115, 232, 0.4);
+}
+
+.btn-success {
+  background-color: #0d8a50;
+  border-color: #0d8a50;
+  box-shadow: 0 1px 3px rgba(13, 138, 80, 0.3);
+}
+
+.btn-success:hover {
+  background-color: #096339;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(13, 138, 80, 0.4);
+}
+
+.btn-outline-secondary {
+  border-color: #dadce0;
+  color: #5f6368;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f1f3f4;
+  color: #202124;
+  border-color: #dadce0;
+}
+
+
+/* --- Global Forms --- */
+.form-control {
+  border-radius: 0.5rem;
+  border: 1px solid #dadce0;
+  padding: 0.75rem 1rem;
+}
+
+.form-control:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* --- Global Cards --- */
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  /* Soft shadow */
+  background: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Don't hover transform EVERY card, only interactive ones if specified, but base style is clean */
+
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
 }

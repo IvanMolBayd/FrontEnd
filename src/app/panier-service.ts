@@ -1,19 +1,21 @@
-import { Injectable, signal, computed, } from '@angular/core';
-import { Produit } from './models/produit'; 
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { Produit } from './models/produit';
+import { ToastService } from './toast-service';
 
 // Interface pour les articles du panier
 export interface CartItem extends Produit {
-    quantity: number;
+  quantity: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class PanierService {
+  private toastService = inject(ToastService);
 
   cartItems = signal<CartItem[]>([]);
-  
-  cartCount = computed(() => 
+
+  cartCount = computed(() =>
     this.cartItems().reduce((count, item) => count + item.quantity, 0)
   );
 
@@ -31,13 +33,19 @@ export class PanierService {
       const existingItem = items.find(i => i.id === product.id);
 
       if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        items.push({ ...product, quantity: 1 });
+        // Retourne une nouvelle liste avec l'item mis à jour (copie immuable)
+        return items.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
       }
 
-      return [...items];
+      // Retourne une nouvelle liste avec le nouvel item
+      return [...items, { ...product, quantity: 1 }];
     });
+
+    this.toastService.show(`${product.title} ajouté au panier !`, 'success');
   }
 
 
@@ -65,20 +73,21 @@ export class PanierService {
       return;
     }
 
-    this.cartItems.update(items => {
-      const itemToUpdate = items.find(i => i.id === productId);
-
-      if (itemToUpdate) {
-        itemToUpdate.quantity = newQuantity;
-      }
-      return [...items];
-    });
+    this.cartItems.update(items =>
+      items.map(item =>
+        item.id === productId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
   }
 
   clearCart(): void {
     this.cartItems.set([]);
   }
+
+  // Utilisation directe du signal computed pour éviter les confusions
   getTotalItems() {
-    return this.cartCount;
+    return this.cartCount();
   }
 }

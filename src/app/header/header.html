@@ -3,10 +3,8 @@
 
     <!-- Logo -->
     <a class="navbar-brand" href="/">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/EMILogo.gif"
-           alt="emiShop Logo"
-           height="40"
-           loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/EMILogo.gif" alt="emiShop Logo" height="40"
+        loading="lazy">
     </a>
 
     <!-- Search (CENTER) -->
@@ -15,10 +13,8 @@
     </div>
 
     <!-- Mobile toggle -->
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menu"
-            aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -45,19 +41,32 @@
 
         <li class="nav-item">
           <a class="nav-link fw-bold text-primary" routerLink="/panier">
-          Panier ({{ panierService.cartCount() }})</a>
+            Panier ({{ panierService.cartCount() }})</a>
         </li>
 
         <li class="nav-item">
           <div class="auth-section">
-            @if (currentUser) {
-              <span class="nav-link fw-bold text-primary">Bonjour, <strong>{{ currentUser.email }}</strong></span>
-              <button (click)="logout()" class="btn btn-sm btn-outline-danger">Déconnexion</button>
-            } @else {
+            <ng-container *ngIf="user$ | async as currentUser; else loginBtn">
+              <div class="d-flex align-items-center gap-2">
+                <a routerLink="/user" class="btn btn-outline-primary d-flex align-items-center gap-2 border-0"
+                  title="Voir mon profil">
+                  <i class="bi bi-person-circle fs-5"></i>
+                  <span class="fw-bold d-none d-md-inline">
+                    {{ currentUser.displayName || (currentUser.email ? currentUser.email.split('@')[0] : 'Mon Compte')
+                    }}
+                  </span>
+                </a>
+                <button (click)="logout()" class="btn btn-sm btn-outline-danger" title="Déconnexion">
+                  <i class="bi bi-box-arrow-right"></i>
+                  Déconnexion
+                </button>
+              </div>
+            </ng-container>
+            <ng-template #loginBtn>
               <button (click)="goToLogin()" class="btn btn-primary">
                 Connexion
               </button>
-            }
+            </ng-template>
           </div>
         </li>
 

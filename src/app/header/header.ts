@@ -1,11 +1,11 @@
-import { Component, inject , OnInit} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CurrencyService } from '../currency-service';
 import { SearchBar } from '../search-bar/search-bar';
 import { CommonModule } from '@angular/common';
-import { Router,  RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { PanierService } from '../panier-service';
-import { Auth ,user, User , signOut} from '@angular/fire/auth';
-import { Subscription } from 'rxjs';
+import { Auth, user, User, signOut } from '@angular/fire/auth';
+
 @Component({
   selector: 'app-header',
   imports: [SearchBar, CommonModule, RouterModule,],
@@ -18,14 +18,11 @@ export class Header implements OnInit {
   private currencyService = inject(CurrencyService);
   private auth = inject(Auth);
   private router = inject(Router);
-  
-  currentUser: User | null = null;
-  userSubscription!: Subscription
+
+  user$ = user(this.auth);
 
   ngOnInit() {
-    this.userSubscription = user(this.auth).subscribe((user) => {
-      this.currentUser = user;
-    });
+    // Plus besoin de souscription manuelle
   }
 
   goToLogin() {
@@ -39,11 +36,7 @@ export class Header implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
-  }
+
 
   onCurrencyChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
